@@ -1,0 +1,3 @@
+import { CalendarClient } from "@/components/dashboard/CalendarClient";
+export const metadata = { title: "Content Calendar" };
+export default function CalendarPage() { return <CalendarClient />; }
