@@ -224,8 +224,31 @@ export default function BillingPage() {
               <button
                 onClick={() => !isCurrent && p.razorpayAmount > 0 && handleRazorpay(p.name, p.razorpayAmount)}
                 disabled={isCurrent || loadingPlan === p.name || (p.name === "Free")}
-                style={{ width: "100%", padding: "11px 16px", borderRadius: 10, border: "none", cursor: isCurrent || p.name === "Free" ? "default" : "pointer", fontSize: 13, fontWeight: 700, fontFamily: "var(--font-manrope)", background: isCurrent ? "var(--bg-quaternary)" : p.popular ? "linear-gradient(135deg,var(--accent-purple),#9333ea)" : "var(--bg-tertiary)", color: isCurrent ? "var(--text-muted)" : p.popular ? "#fff" : "var(--text-primary)", border: (!isCurrent && !p.popular) ? "1px solid var(--border-default)" : "none", opacity: loadingPlan === p.name ? 0.7 : 1, transition: "all 0.2s" }}
-              >
+style={{
+  width: "100%",
+  padding: "11px 16px",
+  borderRadius: 10,
+  cursor: isCurrent || p.name === "Free" ? "default" : "pointer",
+  fontSize: 13,
+  fontWeight: 700,
+  fontFamily: "var(--font-manrope)",
+  background: isCurrent
+    ? "var(--bg-quaternary)"
+    : p.popular
+    ? "linear-gradient(135deg,var(--accent-purple),#9333ea)"
+    : "var(--bg-tertiary)",
+  color: isCurrent
+    ? "var(--text-muted)"
+    : p.popular
+    ? "#fff"
+    : "var(--text-primary)",
+  border:
+    !isCurrent && !p.popular
+      ? "1px solid var(--border-default)"
+      : "none",
+  opacity: loadingPlan === p.name ? 0.7 : 1,
+  transition: "all 0.2s",
+}}              >
                 {loadingPlan === p.name ? "Opening..." : isCurrent ? "Current Plan ✓" : p.name === "Free" ? "Free Forever" : p.name === "Enterprise" ? "Contact Sales" : "Pay with Razorpay"}
               </button>
               {!isCurrent && p.razorpayAmount > 0 && (
