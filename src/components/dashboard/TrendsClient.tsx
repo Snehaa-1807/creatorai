@@ -59,7 +59,7 @@ export function TrendsClient() {
 
   return (
     <div style={{ padding: 24 }}>
-      <ToolPageHeader icon="📈" iconBg="rgba(251,191,36,0.15)" title="Trend Analyzer" desc="What's exploding across platforms in 2026 — updated insights for creators" />
+      <ToolPageHeader iconName="trend" iconBg="rgba(251,191,36,0.15)" iconColor="var(--accent-amber)" title="Trend Analyzer" desc="What's exploding across platforms in 2026 — updated insights for creators" />
 
       {/* Top trend spotlight */}
       <div style={{ background: "linear-gradient(135deg, rgba(124,92,252,0.12), rgba(244,114,182,0.08))", border: "1px solid rgba(124,92,252,0.25)", borderRadius: 16, padding: 20, marginBottom: 20, display: "flex", alignItems: "center", gap: 20 }}>
