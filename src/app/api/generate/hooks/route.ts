@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
     const hooks = await generateViralHooks({ topic, platform, style, emotion, count: Math.min(count, 10) });
 
     await Promise.all([
-      GeneratedContent.create({ userId: session.user.id, type: "hook", prompt: topic, output: hooks, platform, model: "llama-3.3-70b-versatile", creditsUsed: 1 }),
+      GeneratedContent.create({ userId: session.user.id, type: "hook", prompt: topic, output: hooks, platform, aiModel: "llama-3.3-70b-versatile", creditsUsed: 1 }),
       user.plan === "free" ? User.findByIdAndUpdate(session.user.id, { $inc: { credits: -1 } }) : Promise.resolve(),
     ]);
 

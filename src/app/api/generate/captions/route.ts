@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
     const caption = await generateCaption({ topic, platform, tone, includeHashtags, includeEmojis });
 
     await Promise.all([
-      GeneratedContent.create({ userId: session.user.id, type: "caption", prompt: topic, output: caption, platform, model: "llama-3.1-8b-instant", creditsUsed: 1 }),
+      GeneratedContent.create({ userId: session.user.id, type: "caption", prompt: topic, output: caption, platform, aiModel: "llama-3.1-8b-instant", creditsUsed: 1 }),
       user.plan === "free" ? User.findByIdAndUpdate(session.user.id, { $inc: { credits: -1 } }) : Promise.resolve(),
     ]);
 

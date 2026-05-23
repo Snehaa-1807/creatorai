@@ -7,19 +7,19 @@ export interface IGeneratedContentDocument extends Document {
   prompt: string;
   output: mongoose.Schema.Types.Mixed;
   platform?: string;
-  model: string;
+  aiModel: string;        // renamed from 'model' — avoids conflict with Mongoose Document.model()
   creditsUsed: number;
   createdAt: Date;
 }
 
 const GeneratedContentSchema = new Schema<IGeneratedContentDocument>(
   {
-    userId: { type: String, required: true, index: true },
-    type: { type: String, required: true, enum: ["idea", "hook", "script", "title", "caption", "calendar", "trend", "repurpose"] },
-    prompt: { type: String, required: true },
-    output: { type: mongoose.Schema.Types.Mixed, required: true },
-    platform: { type: String },
-    model: { type: String, default: "llama-3.3-70b-versatile" },
+    userId:      { type: String, required: true, index: true },
+    type:        { type: String, required: true, enum: ["idea", "hook", "script", "title", "caption", "calendar", "trend", "repurpose"] },
+    prompt:      { type: String, required: true },
+    output:      { type: mongoose.Schema.Types.Mixed, required: true },
+    platform:    { type: String },
+    aiModel:     { type: String, default: "llama-3.3-70b-versatile" },
     creditsUsed: { type: Number, default: 1 },
   },
   { timestamps: true }
@@ -48,13 +48,13 @@ export interface ISavedContentDocument extends Document {
 
 const SavedContentSchema = new Schema<ISavedContentDocument>(
   {
-    userId: { type: String, required: true, index: true },
-    type: { type: String, required: true, enum: ["idea", "hook", "script", "title", "caption", "calendar", "other"] },
-    title: { type: String, required: true },
-    content: { type: mongoose.Schema.Types.Mixed, required: true },
-    platform: { type: String },
-    niche: { type: String },
-    tags: [{ type: String }],
+    userId:     { type: String, required: true, index: true },
+    type:       { type: String, required: true, enum: ["idea", "hook", "script", "title", "caption", "calendar", "other"] },
+    title:      { type: String, required: true },
+    content:    { type: mongoose.Schema.Types.Mixed, required: true },
+    platform:   { type: String },
+    niche:      { type: String },
+    tags:       [{ type: String }],
     isFavorite: { type: Boolean, default: false },
   },
   { timestamps: true }

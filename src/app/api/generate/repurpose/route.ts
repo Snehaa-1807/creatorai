@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
     const result = await repurposeContent(content, fromPlatform, toPlatform);
 
     await Promise.all([
-      GeneratedContent.create({ userId: session.user.id, type: "caption", prompt: `${fromPlatform} → ${toPlatform}`, output: result, platform: toPlatform, model: "llama-3.3-70b-versatile", creditsUsed: credits }),
+      GeneratedContent.create({ userId: session.user.id, type: "caption", prompt: `${fromPlatform} → ${toPlatform}`, output: result, platform: toPlatform, aiModel: "llama-3.3-70b-versatile", creditsUsed: credits }),
       user.plan === "free" ? User.findByIdAndUpdate(session.user.id, { $inc: { credits: -credits } }) : Promise.resolve(),
     ]);
 

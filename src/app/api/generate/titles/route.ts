@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
     const titles = await generateSEOTitles({ topic, platform, keywords, count: Math.min(count, 10) });
 
     await Promise.all([
-      GeneratedContent.create({ userId: session.user.id, type: "title", prompt: topic, output: titles, platform, model: "llama-3.1-8b-instant", creditsUsed: 1 }),
+      GeneratedContent.create({ userId: session.user.id, type: "title", prompt: topic, output: titles, platform, aiModel: "llama-3.1-8b-instant", creditsUsed: 1 }),
       user.plan === "free" ? User.findByIdAndUpdate(session.user.id, { $inc: { credits: -1 } }) : Promise.resolve(),
     ]);
 

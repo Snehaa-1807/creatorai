@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
     });
 
     await Promise.all([
-      GeneratedContent.create({ userId: session.user.id, type: "calendar", prompt: niche, output: calendar, model: "llama-3.3-70b-versatile", creditsUsed: credits }),
+      GeneratedContent.create({ userId: session.user.id, type: "calendar", prompt: niche, output: calendar, aiModel: "llama-3.3-70b-versatile", creditsUsed: credits }),
       user.plan === "free" ? User.findByIdAndUpdate(session.user.id, { $inc: { credits: -credits } }) : Promise.resolve(),
     ]);
 

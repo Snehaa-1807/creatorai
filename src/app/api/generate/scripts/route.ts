@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
         prompt: `${topic} | ${type}`,
         output: script,
         platform,
-        model: "llama-3.3-70b-versatile",
+        aiModel: "llama-3.3-70b-versatile",
         creditsUsed: credits,
       }),
       user.plan === "free"

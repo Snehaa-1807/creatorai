@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
         prompt: `${niche} | ${platform} | ${audience}`,
         output: ideas,
         platform,
-        model: "llama-3.3-70b-versatile",
+        aiModel: "llama-3.3-70b-versatile",
         creditsUsed: creditsNeeded,
       }),
       user.plan === "free" ? User.findByIdAndUpdate(session.user.id, { $inc: { credits: -creditsNeeded } }) : Promise.resolve(),
